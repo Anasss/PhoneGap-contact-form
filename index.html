@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+    	
+        document.getElementById('BtnSave').addEventListener('click',saveContact,false);
+        // create
+//         var contact = navigator.contacts.create();
+//         contact.displayName = "Plumber";
+//         contact.nickname = "Plumber";       //specify both to support all devices
+//         var name = new ContactName();
+//         name.givenName = "Jane";
+//         name.familyName = "Doe";
+//         contact.name = name;
+
+//         // save
+//         contact.save(onSaveSuccess,onSaveError);
+
+//         // clone
+//         var clone = contact.clone();
+//         clone.name.givenName = "John";
+//         console.log("Original contact name = " + contact.name.givenName);
+//         console.log("Cloned contact name = " + clone.name.givenName); 
+
+//         // remove
+//         contact.remove(onRemoveSuccess,onRemoveError);
+    }
+
+    // onSaveSuccess: Get a snapshot of the current contacts
+    //
+  
+    
+    function saveContact ()
+    
+    {
+    	var fullname = document.getElementById('lenom').value + " "+document.getElementById('leprenom').value;
+    	var note = document.getElementById('lanote').value;
+    	
+    	var contact = navigator.contacts.create({"displayName" : fullname});
+    	contact.note = note;
+    	
+    	contact.save(onSaveSuccess,onSaveError);
+    	
+    	
+    }
+
+    function onSaveSuccess(contact) {
+        alert("Save Success");
+    }
+
+    // onSaveError: Failed to get the contacts
+    //
+    function onSaveError(contactError) {
+        alert("Error = " + contactError.code);
+    }
+
+    // onRemoveSuccess: Get a snapshot of the current contacts
+    //
+    function onRemoveSuccess(contacts) {
+        alert("Removal Success");
+    }
+
+    // onRemoveError: Failed to get the contacts
+    //
+    function onRemoveError(contactError) {
+        alert("Error = " + contactError.code);
+    }
+    
+    
+    </script>
+  </head>
+  <body>
+    <h1>Contacts</h1>
+    <p>Ajouter des contacts</p>
+    <p> 
+    
+    <form >
+
+
+<label for="nom"> Nom </label><br/>
+ <input type="text"  id="lenom"  /><br/>
+<label for="prenom"> Prénom </label> <br/>
+<input type="text" name=id="leprenom" /><br/>
+<label for="note"> Note</label> <br/>
+<input type="text" name=id="lanote" /><br/>
+<input type="button" name=id="BtnSave" value="Enregistrer" />
+
+
+
+</form>
+    
+    </p>
+  </body>
+</html>
